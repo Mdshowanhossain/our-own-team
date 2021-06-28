@@ -1,12 +1,30 @@
-import Header from './components/Header/Header';
-import Users from './components/Users/Users';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from "react-router-dom";
+import Header from "./components/Header/Header";
+import Home from "./components/Home/Home";
+import NotFound from "./components/NotFound/NotFound";
+import TeamDetails from "./components/TeamDetails/TeamDetails";
 
 function App() {
+
   return (
-    <div className="App">
-      <Header></Header>
-      <Users></Users>
-    </div>
+    <Router>
+      <Header />
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/team/:teamId">
+          <TeamDetails />
+        </Route>
+        <Route path="*">
+          <NotFound />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
